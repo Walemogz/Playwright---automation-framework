@@ -109,17 +109,15 @@ jobs:
 
 
         📄 Reporting & Artifacts
-
 Test results → /playwright-report
 
 Trace files → /test-results
 
 Screenshots & videos on failure
-
 You can configure these in playwright.config.js.
 
 
-Author
+Author:
 Monsuru Olawale Mogaji
 Automation Test Engineer
 💼 Framework: Playwright + JavaScript
