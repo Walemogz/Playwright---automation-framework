@@ -12,7 +12,7 @@ export default defineConfig({
 
     browserName: 'chromium',
     baseURL: process.env.BASE_URL || 'https://www.saucedemo.com/',
-    headless: false, // optional, can run headless in CI
+    headless: true, // optional, can run headless in CI
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },
