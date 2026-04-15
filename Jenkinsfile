@@ -23,10 +23,15 @@ pipeline {
 
     post {
         always {
-            publishHTML([
+            echo 'Publishing HTML Report...'
+
+            publishHTML(target: [
+                reportName: 'Playwright HTML Report',
                 reportDir: 'playwright-report',
                 reportFiles: 'index.html',
-                reportName: 'Playwright HTML Report'
+                keepAll: true,
+                alwaysLinkToLastBuild: true,
+                allowMissing: false
             ])
         }
     }
