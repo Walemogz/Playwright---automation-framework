@@ -21,21 +21,21 @@ pipeline {
         }
     }
 
-   post {
-    always {
-        echo 'DEBUG: listing report folder'
+    post {
+        always {
+            echo 'DEBUG: listing report folder'
+            bat 'dir playwright-report'
 
-        bat 'dir playwright-report'
+            echo 'Publishing HTML Report...'
 
-        echo 'Publishing HTML Report...'
-
-        publishHTML(target: [
-            reportName: 'Playwright HTML Report',
-            reportDir: 'playwright-report',
-            reportFiles: 'index.html',
-            keepAll: true,
-            alwaysLinkToLastBuild: true,
-            allowMissing: false
-        ])
+            publishHTML(target: [
+                reportName: 'Playwright HTML Report',
+                reportDir: 'playwright-report',
+                reportFiles: 'index.html',
+                keepAll: true,
+                alwaysLinkToLastBuild: true,
+                allowMissing: false
+            ])
+        }
     }
 }
