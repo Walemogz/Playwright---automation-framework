@@ -4,20 +4,30 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                bat 'npm install'
+                bat 'call npm install'
             }
         }
 
-        stage('Install Playwright Browsers') {
+        stage('Install Browsers') {
             steps {
-                bat 'npx playwright install'
+                bat 'call npx playwright install'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'npx playwright test'
+                bat 'call npx playwright test'
             }
+        }
+    }
+
+    post {
+        always {
+            publishHTML([
+                reportDir: 'playwright-report',
+                reportFiles: 'index.html',
+                reportName: 'Playwright HTML Report'
+            ])
         }
     }
 }
