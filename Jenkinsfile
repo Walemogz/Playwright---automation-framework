@@ -2,39 +2,31 @@ pipeline {
     agent any
 
     stages {
-        stage('Install Dependencies') {
+
+        stage('Checkout') {
             steps {
-                bat 'call npm install'
+                checkout scm
             }
         }
 
-        stage('Install Browsers') {
+        stage('Run Docker Compose') {
             steps {
-                bat 'call npx playwright install'
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                bat 'call npx playwright test'
+                bat 'docker compose up --build'
             }
         }
     }
 
     post {
         always {
-            echo 'DEBUG: listing report folder'
-            bat 'dir playwright-report'
-
             echo 'Publishing HTML Report...'
 
             publishHTML(target: [
-                reportName: 'Playwright HTML Report',
+                reportName: 'Playwright Report',
                 reportDir: 'playwright-report',
                 reportFiles: 'index.html',
                 keepAll: true,
                 alwaysLinkToLastBuild: true,
-                allowMissing: false
+                allowMissing: true
             ])
         }
     }
