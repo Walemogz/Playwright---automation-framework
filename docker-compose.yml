@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    app:
+        image: nginx
+        ports:
+            - "8081:80"
+
+    tests:
+        build: .
+        container_name: playwright-tests-container
+
+        volumes:
+            - ./playwright-report:/app/playwright-report
+
+        depends_on:
+            - app
