@@ -8,14 +8,10 @@ pipeline {
                 checkout scm
             }
         }
-stage('DEBUG FILES') {
-    steps {
-        bat 'dir'
-    }
-}
 
         stage('Run Docker Compose') {
             steps {
+                bat 'docker compose down || exit 0'
                 bat 'docker compose up --build'
             }
         }
