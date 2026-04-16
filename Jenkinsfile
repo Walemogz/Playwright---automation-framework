@@ -8,6 +8,11 @@ pipeline {
                 checkout scm
             }
         }
+stage('DEBUG FILES') {
+    steps {
+        bat 'dir'
+    }
+}
 
         stage('Run Docker Compose') {
             steps {
