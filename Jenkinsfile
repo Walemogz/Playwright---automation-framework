@@ -12,7 +12,7 @@ pipeline {
         stage('Run Docker Compose') {
             steps {
                 bat 'docker compose down || exit 0'
-                bat 'docker compose up --build'
+                bat 'docker compose up --build --abort-on-container-exit --exit-code-from tests'
             }
         }
     }
